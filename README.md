@@ -1,21 +1,5 @@
-# BERT-BiLSMT-CRF-NER
+## BERT-BiLSMT-CRF-NER
 Tensorflow solution of NER task Using BiLSTM-CRF model with Google BERT Fine-tuning
-
-使用谷歌的BERT模型在BLSTM-CRF模型上进行预训练用于中文命名实体识别的Tensorflow代码'
-
-中文文档请查看https://blog.csdn.net/macanv/article/details/85684284  如果对您有帮助，麻烦点个star,谢谢~~  
-
-Welcome to star this repository!
-
-The Chinese training data($PATH/NERdata/) come from:https://github.com/zjy-ucas/ChineseNER 
-  
-The CoNLL-2003 data($PATH/NERdata/ori/) come from:https://github.com/kyzhouhzau/BERT-NER 
-  
-The evaluation codes come from:https://github.com/guillaumegenthial/tf_metrics/blob/master/tf_metrics/__init__.py  
-
-
-Try to implement NER work based on google's BERT code and BiLSTM-CRF network!
-
 
 ## How to train
 #### 1. Download BERT chinese model :  
@@ -29,7 +13,7 @@ mkdir output
 ```
 #### 3. Train model
 
-##### first method 
+##### 1) direct trainning 
 ```
   python3 bert_lstm_ner.py   \
                   --task_name="NER"  \ 
@@ -46,7 +30,7 @@ mkdir output
                   --num_train_epochs=3.0   \
                   --output_dir=./output/result_dir/ 
  ```       
- ##### OR replace the BERT path and project path in bert_lstm_ner.py
+ ##### 2) replace the BERT path and project path in bert_lstm_ner.py
  ```
  if os.name == 'nt': #windows path config
     bert_path = '{your BERT model path}'
@@ -60,7 +44,7 @@ else: # linux path config
 python3 bert_lstm_ner.py
 ```
 
-### USING BLSTM-CRF OR ONLY CRF FOR DECODE!
+## USING BLSTM-CRF OR ONLY CRF FOR DECODE!
 Just alter bert_lstm_ner.py line of 450, the params of the function of add_blstm_crf_layer: crf_only=True or False  
 
 ONLY CRF output layer:
@@ -92,8 +76,6 @@ all params using default
 last two result are label level result, the entitly level result in code of line 796-798,this result will be output in predict process.
 show my entity level result :
 ![](./pictures/03E18A6A9C16082CF22A9E8837F7E35F.png)
-> my model can download from baidu cloud:  
->链接：https://pan.baidu.com/s/1GfDFleCcTv5393ufBYdgqQ 提取码：4cus
 
 ## ONLINE PREDICT
 If model is train finished, just run
@@ -111,6 +93,7 @@ def get_labels(self):
 NOTE: "X", “[CLS]”, “[SEP]” These three are necessary, you just replace your data label to this return list.  
 Or you can use last code lets the program automatically get the label from training data
 ```angular2html
+
 def get_labels(self):
         # 通过读取train文件获取标签的方法会出现一定的风险。
         if os.path.exists(os.path.join(FLAGS.output_dir, 'label_list.pkl')):
@@ -136,7 +119,6 @@ def get_labels(self):
 
 
 ## reference: 
-+ The evaluation codes come from:https://github.com/guillaumegenthial/tf_metrics/blob/master/tf_metrics/__init__.py
 
 + [https://github.com/google-research/bert](https://github.com/google-research/bert)
       
@@ -144,4 +126,4 @@ def get_labels(self):
 
 + [https://github.com/zjy-ucas/ChineseNER](https://github.com/zjy-ucas/ChineseNER)
 
-> Any problem please email me(ma_cancan@163.com)
++ [https://github.com/guillaumegenthial/tf_metrics/blob/master/tf_metrics/__init__.py](evaluation codes)
