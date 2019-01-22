@@ -102,8 +102,8 @@ python3 terminal_predict.py
 ```
 ![](./pictures/predict.png)
  
- ## Using yourself data to train
- if you want to use yourself data to train ner model,you just modify  the get_labes func.
+ ## Using your own data to train
+ if you want to use your own data to train ner model,you just need to modify  the get_labes function.
  ```angular2html
 def get_labels(self):
         return ["O", "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "X", "[CLS]", "[SEP]"]
